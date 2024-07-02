@@ -41,7 +41,7 @@ except Exception as e:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['web-production-339f7.up.railway.app', '127.0.0.1']
 
 
 # Application definition
