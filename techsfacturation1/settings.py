@@ -40,17 +40,23 @@ except Exception as e:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [
-    "web-production-339f7.up.railway.app", "https://*.127.0.0.1"]
+# settings.py
 
-
-CSRF_COOKIE_SECURE = True  # CSRF cookie enabled only Https server
-CSRF_COOKIE_HTTPONLY = True  # CSRF stored in http only cookie
-CSRF_TESTED_ORIGINS = [
-    "http://localhost:8000"
+# Ajouter l'origine dans ALLOWED_HOSTS
+ALLOWED_HOSTS = [
+    'web-production-339f7.up.railway.app',
+    '127.0.0.1',  # Ajouter d'autres domaines si nécessaire
 ]
-CSRF_COOKIE_SAMESITE = "Lax"  # Samesite "Lax" - Protection against csrf attacks
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+
+
+# Ajouter l'origine dans CSRF_TRUSTED_ORIGINS
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-339f7.up.railway.app',
+    'https://autre-domaine.com',  # Ajouter d'autres domaines si nécessaire
+]
 
 
 # Application definition
