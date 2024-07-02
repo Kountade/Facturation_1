@@ -1,0 +1,1 @@
+web: gunicorn techsfacturation1.wsgi
