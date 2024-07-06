@@ -46,6 +46,14 @@ ALLOWED_HOSTS = ["web-production-339f7.up.railway.app",
                  "127.0.0.1"]
 
 
+CSRF_COOKIE_SECURE = True  # CSRF cookie enabled only Https server
+CSRF_COOKIE_HTTPONLY = True  # CSRF stored in http only cookie
+CSRF_TESTED_ORIGINS = [
+    "http://localhost:8000"
+]
+CSRF_COOKIE_SAMESITE = "Lax"  # Samesite "Lax" - Protection against csrf attacks
+
+
 # Application definition
 
 INSTALLED_APPS = [
