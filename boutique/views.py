@@ -9,7 +9,6 @@ from django.views import View
 from .models import *
 from django.contrib import messages
 import pdfkit
-
 # Set the path to wkhtmltopdf executable file
 from django.core.paginator import Paginator
 

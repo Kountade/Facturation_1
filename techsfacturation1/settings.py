@@ -42,21 +42,8 @@ except Exception as e:
 DEBUG = True
 # settings.py
 
-# Ajouter l'origine dans ALLOWED_HOSTS
-ALLOWED_HOSTS = [
-    'web-production-339f7.up.railway.app',
-    '127.0.0.1',  # Ajouter d'autres domaines si nécessaire
-]
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = True
-
-
-# Ajouter l'origine dans CSRF_TRUSTED_ORIGINS
-CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-339f7.up.railway.app',
-    'https://autre-domaine.com',  # Ajouter d'autres domaines si nécessaire
-]
+ALLOWED_HOSTS = ["web-production-339f7.up.railway.app",
+                 "127.0.0.1"]
 
 
 # Application definition
