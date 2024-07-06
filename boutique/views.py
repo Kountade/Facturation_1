@@ -14,10 +14,6 @@ from django.core.paginator import Paginator
 
 
 # Update with the correct path
-config = pdfkit.configuration(
-    wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
-pdf = pdfkit.from_url(
-    'https://web-production-339f7.up.railway.app', 'out.pdf', configuration=config)
 
 
 class HomeView(View):
