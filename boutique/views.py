@@ -1,6 +1,8 @@
 import datetime
 from django.template.loader import get_template
 from django.http import HttpResponse
+
+from techsfacturation1.settings import SITE_PDF
 from .utils import pagination, get_invoice
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import transaction
@@ -14,6 +16,10 @@ from django.core.paginator import Paginator
 
 
 # Update with the correct path
+config = pdfkit.configuration(
+    wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
+pdf = pdfkit.from_url(
+    SITE_PDF, 'out.pdf', configuration=config)
 
 
 class HomeView(View):
