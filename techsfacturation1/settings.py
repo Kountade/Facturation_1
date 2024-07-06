@@ -38,7 +38,7 @@ try:
 except Exception as e:
     pass
 
-SITE_PDF = 'https://web-production-339f7.up.railway.app'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # settings.py

@@ -1,8 +1,6 @@
 import datetime
 from django.template.loader import get_template
 from django.http import HttpResponse
-
-from techsfacturation1.settings import SITE_PDF
 from .utils import pagination, get_invoice
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import transaction
@@ -16,10 +14,6 @@ from django.core.paginator import Paginator
 
 
 # Update with the correct path
-config = pdfkit.configuration(
-    wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
-pdf = pdfkit.from_url(
-    SITE_PDF, 'out.pdf', configuration=config)
 
 
 class HomeView(View):
@@ -193,38 +187,32 @@ class InvoiceVisualizationView(View):
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         context = get_invoice(pk)
-        return render(request, self.template_name, context)
-
-    def get(request, *args, **kwargs):
-
-        pk = kwargs.get('pk')
-
-        context = get_invoice(pk)
-
         context['date'] = datetime.datetime.today()
 
-    # get html file
+        # Obtenir le fichier HTML
         template = get_template('invoice-pdf.html')
 
-    # render html with context variables
-
+        # Rendre HTML avec les variables du contexte
         html = template.render(context)
 
-    # options of pdf format
-
+        # Options de formatage PDF
         options = {
             'page-size': 'Letter',
             'encoding': 'UTF-8',
             "enable-local-file-access": ""
         }
 
-    # generate pdf
+        # Configurer pdfkit avec le chemin vers wkhtmltopdf
+        # Mettez à jour avec le bon chemin
+        path_wkhtmltopdf = 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+        config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
-        pdf = pdfkit.from_string(html, False, options)
+        # Générer le PDF
+        pdf = pdfkit.from_string(
+            html, False, options=options, configuration=config)
 
+        # Créer la réponse HTTP avec le fichier PDF généré
         response = HttpResponse(pdf, content_type='application/pdf')
-
-        response['Content-Disposition'] = "attachement"
-        response['Content-Disposition'] = "attachment; filename=invoice.pdf"
+        response['Content-Disposition'] = 'attachment; filename="invoice.pdf"'
 
         return response
